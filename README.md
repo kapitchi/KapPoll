@@ -17,8 +17,6 @@ Licence
 Introduction
 ============
 
-Set of common classes/interfaces to provide generic entity API and event triggering - services, mappers, controllers and helpers to work and manage entities.
-Entity is defined as POPO implementing one method getId() and having empty constructor.
 
 Installation
 ============
