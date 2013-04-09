@@ -88,6 +88,7 @@ class Module extends AbstractModule implements ServiceProviderInterface, Control
                         $sm->get('KapPoll\Entity\Poll'),
                         $sm->get('KapPoll\Entity\PollHydrator')
                     );
+                     $s->setInputFilter($sm->get('KapPoll\Entity\PollInputFilter'));
                     return $s;
                 },
                 'KapPoll\Mapper\PollDbAdapter' => function ($sm) {
@@ -105,6 +106,15 @@ class Module extends AbstractModule implements ServiceProviderInterface, Control
                     //needed here because hydrator tranforms camelcase to underscore
                     return new \Zend\Stdlib\Hydrator\ClassMethods(false);
                 },
+                'KapPoll\Form\Poll' => function ($sm) {
+                    $ins = new Form\Poll('poll');
+                    $ins->setInputFilter($sm->get('KapPoll\Form\PollInputFilter'));
+                    return $ins;
+                },
+                'KapPoll\Form\PollInputFilter' => function ($sm) {
+                    $ins = new Form\PollInputFilter();
+                    return $ins;
+                },                        
                 //Option
                 'KapPoll\Service\Option' => function ($sm) {
                     $s = new Service\Option(
@@ -112,6 +122,7 @@ class Module extends AbstractModule implements ServiceProviderInterface, Control
                         $sm->get('KapPoll\Entity\Option'),
                         $sm->get('KapPoll\Entity\OptionHydrator')
                     );
+                     $s->setInputFilter($sm->get('KapPoll\Entity\OptionInputFilter'));
                     return $s;
                 },
                 'KapPoll\Mapper\OptionDbAdapter' => function ($sm) {
@@ -129,6 +140,15 @@ class Module extends AbstractModule implements ServiceProviderInterface, Control
                     //needed here because hydrator tranforms camelcase to underscore
                     return new \Zend\Stdlib\Hydrator\ClassMethods(false);
                 },
+                'KapPoll\Form\Option' => function ($sm) {
+                    $ins = new Form\Option('option');
+                    $ins->setInputFilter($sm->get('KapPoll\Form\OptionInputFilter'));
+                    return $ins;
+                },
+                'KapPoll\Form\OptionInputFilter' => function ($sm) {
+                    $ins = new Form\OptionInputFilter();
+                    return $ins;
+                },
                 //Answer
                 'KapPoll\Service\Answer' => function ($sm) {
                     $s = new Service\Answer(
@@ -136,6 +156,7 @@ class Module extends AbstractModule implements ServiceProviderInterface, Control
                         $sm->get('KapPoll\Entity\Answer'),
                         $sm->get('KapPoll\Entity\AnswerHydrator')
                     );
+                     $s->setInputFilter($sm->get('KapPoll\Entity\AnswerInputFilter'));
                     return $s;
                 },
                 'KapPoll\Mapper\AnswerDbAdapter' => function ($sm) {
@@ -153,6 +174,15 @@ class Module extends AbstractModule implements ServiceProviderInterface, Control
                     //needed here because hydrator tranforms camelcase to underscore
                     return new \Zend\Stdlib\Hydrator\ClassMethods(false);
                 },
+                'KapPoll\Form\Answer' => function ($sm) {
+                    $ins = new Form\Answer('answer');
+                    $ins->setInputFilter($sm->get('KapPoll\Form\AnswerInputFilter'));
+                    return $ins;
+                },
+                'KapPoll\Form\AnswerInputFilter' => function ($sm) {
+                    $ins = new Form\AnswerInputFilter();
+                    return $ins;
+                },        
             )
         );
     }
