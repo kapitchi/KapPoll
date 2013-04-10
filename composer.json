@@ -1,5 +1,6 @@
 {
     "name": "kapitchi/kap-poll",
+    "license": "LGPL-3.0",
     "description": "ZF2 poll module",
     "keywords": [
         "kapitchi",
