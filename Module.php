@@ -94,18 +94,14 @@ class Module extends AbstractModule implements ServiceProviderInterface, Control
                         $sm->get('KapPoll\Entity\Poll'),
                         $sm->get('KapPoll\Entity\PollHydrator')
                     );
-                     $s->setInputFilter($sm->get('KapPoll\Entity\PollInputFilter'));
                     return $s;
                 },
                 'KapPoll\Mapper\PollDbAdapter' => function ($sm) {
                     return new EntityDbAdapterMapper(
                         $sm->get('Zend\Db\Adapter\Adapter'),
-                        new EntityDbAdapterMapperOptions(array(
-                            'tableName' => 'poll',
-                            'primaryKey' => 'id',
-                            'hydrator' => $sm->get('KapPoll\Entity\PollHydrator'),
-                            'entityPrototype' => $sm->get('KapPoll\Entity\Poll'),
-                        ))
+                        $sm->get('KapPoll\Entity\Poll'),
+                        $sm->get('KapPoll\Entity\PollHydrator'),
+                       'poll'
                     );
                 },
                 'KapPoll\Entity\PollHydrator' => function ($sm) {
@@ -128,18 +124,14 @@ class Module extends AbstractModule implements ServiceProviderInterface, Control
                         $sm->get('KapPoll\Entity\Option'),
                         $sm->get('KapPoll\Entity\OptionHydrator')
                     );
-                     $s->setInputFilter($sm->get('KapPoll\Entity\OptionInputFilter'));
                     return $s;
                 },
                 'KapPoll\Mapper\OptionDbAdapter' => function ($sm) {
                     return new EntityDbAdapterMapper(
                         $sm->get('Zend\Db\Adapter\Adapter'),
-                        new EntityDbAdapterMapperOptions(array(
-                            'tableName' => 'poll_option',
-                            'primaryKey' => 'id',
-                            'hydrator' => $sm->get('KapPoll\Entity\OptionHydrator'),
-                            'entityPrototype' => $sm->get('KapPoll\Entity\Option'),
-                        ))
+                        $sm->get('KapPoll\Entity\Option'),
+                        $sm->get('KapPoll\Entity\OptionHydrator'),
+                        'poll_option'
                     );
                 },
                 'KapPoll\Entity\OptionHydrator' => function ($sm) {
@@ -156,24 +148,20 @@ class Module extends AbstractModule implements ServiceProviderInterface, Control
                     return $ins;
                 },
                 //Answer
-                'KapPoll\Service\Answer' => function ($sm) {
+               'KapPoll\Service\Answer' => function ($sm) {
                     $s = new Service\Answer(
                         $sm->get('KapPoll\Mapper\AnswerDbAdapter'),
                         $sm->get('KapPoll\Entity\Answer'),
                         $sm->get('KapPoll\Entity\AnswerHydrator')
                     );
-                     $s->setInputFilter($sm->get('KapPoll\Entity\AnswerInputFilter'));
                     return $s;
                 },
                 'KapPoll\Mapper\AnswerDbAdapter' => function ($sm) {
                     return new EntityDbAdapterMapper(
                         $sm->get('Zend\Db\Adapter\Adapter'),
-                        new EntityDbAdapterMapperOptions(array(
-                            'tableName' => 'poll_answer',
-                            'primaryKey' => 'id',
-                            'hydrator' => $sm->get('KapPoll\Entity\AnswerHydrator'),
-                            'entityPrototype' => $sm->get('KapPoll\Entity\Answer'),
-                        ))
+                        $sm->get('KapPoll\Entity\Answer'),
+                        $sm->get('KapPoll\Entity\AnswerHydrator'),
+                        'poll_answer'
                     );
                 },
                 'KapPoll\Entity\AnswerHydrator' => function ($sm) {
